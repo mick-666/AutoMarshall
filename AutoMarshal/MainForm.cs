@@ -123,7 +123,7 @@ namespace AutoMarshal
                         string colorValue = this.dataGridView1["СпискиЦвет", e.RowIndex].Value.ToString();
                         if (colorValue != "")
                         {
-                            e.CellStyle.BackColor = ColorTranslator.FromHtml(colorValue); ;
+                            e.CellStyle.BackColor = System.Drawing.ColorTranslator.FromHtml(colorValue); ;
                         }
                     }
                 }
