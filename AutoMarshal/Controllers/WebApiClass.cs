@@ -19,7 +19,7 @@ namespace AutoMarshal.Controllers
     public class WebApiClass
     {
         static private List<Entry> _entries = new List<Entry>();
-        static private DateTime tillDateTime;
+        static private DateTime _tillDateTime;
 
         //асинхронный метод загрузки данных в JSON формате
         public static async Task GetVehicleListAsyncJson(DateTime dtTill, Action<List<Entry>> CallBack)
@@ -95,7 +95,7 @@ namespace AutoMarshal.Controllers
             DataRow dr = dt.NewRow();
             bool result = true;
 
-            foreach (AutoMarshalColumn col in AColumns.Instance.columns)
+            foreach (AutoMarshalColumn col in AColumns.Instance.Columns)
             {
                 if (col.XPath != "")
                 {
@@ -108,7 +108,7 @@ namespace AutoMarshal.Controllers
                         DateTime timestamp = Convert.ToDateTime(propertyValue);
                         dr.SetField(col.DataMember, timestamp);
                         //если начались строки страше заданной даты - прекащаем вставку строк в таблицу
-                        result = tillDateTime < timestamp;
+                        result = _tillDateTime < timestamp;
                     }
                     else
                     {
@@ -134,10 +134,10 @@ namespace AutoMarshal.Controllers
         public static async Task GetVehicleListAsyncXML(DateTime dtTill, Action<BindingSource> CallBack)
         {
             //Граничная дата, после которой нас не интересуют записи журнала
-            tillDateTime = dtTill;
+            _tillDateTime = dtTill;
             DataTable dt = new DataTable();
             //Создаем поля в таблице данных 
-            foreach (AutoMarshalColumn col in AColumns.Instance.columns) if (col.DataMember != "") dt.Columns.Add(new DataColumn(col.DataMember));
+            foreach (AutoMarshalColumn col in AColumns.Instance.Columns) if (col.DataMember != "") dt.Columns.Add(new DataColumn(col.DataMember));
 
             BindingSource SBind = new BindingSource();
             int offSet = 0;

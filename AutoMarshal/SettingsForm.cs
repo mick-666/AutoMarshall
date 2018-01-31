@@ -17,11 +17,11 @@ namespace AutoMarshal
         {
             InitializeComponent();
             this.Text = "Настройки приложения";
-            readSettings();
+            this.ReadSettings();
         }
 
         //читаем настройки app.config
-        private void readSettings()
+        private void ReadSettings()
         {
             tbBaseURI.Text = Settings.Default.BaseURI;
             tbVehiclesURI.Text = Settings.Default.VehiclesUriTemplate;
@@ -31,7 +31,7 @@ namespace AutoMarshal
         }
 
         //сохраняем изменения
-        private void writeSettings()
+        private void WriteSettings()
         {
             Settings.Default.BaseURI = tbBaseURI.Text.Trim();
             Settings.Default.VehiclesUriTemplate = tbVehiclesURI.Text.Trim();
@@ -45,7 +45,7 @@ namespace AutoMarshal
         {
             SettingsForm settingsForm = new SettingsForm();
             DialogResult result = settingsForm.ShowDialog();
-            if (result == DialogResult.OK) settingsForm.writeSettings();
+            if (result == DialogResult.OK) settingsForm.WriteSettings();
             return result;
         }
 

@@ -52,11 +52,11 @@ namespace AutoMarshal
         }
 
         //метод передается в асинхронную задачу загрузки данных в формате JSON. Вызывается в момент готовности данных
-        public void VehiclesReadyJSON(List<Entry> Entries)
+        public void VehiclesReadyJSON(List<Entry> entries)
         {
             //Настраиваем грид на новый источник данных, инициализируем изображение первой строки, подписываемся на события
             Utils.SetupGridColumnsEx(dataGridView1);
-            dataGridView1.DataSource = Utils.createDataTable(Entries, "journal");
+            dataGridView1.DataSource = Utils.CreateDataTable(entries, "journal");
             dataGridView1.CellFormatting += DataGridView1_CellFormatting;
             dataGridView1.RowEnter += dataGridView1_RowEnter;
             dataGridView1.Cursor = Cursors.Default;
@@ -123,7 +123,7 @@ namespace AutoMarshal
                         string colorValue = this.dataGridView1["СпискиЦвет", e.RowIndex].Value.ToString();
                         if (colorValue != "")
                         {
-                            e.CellStyle.BackColor = System.Drawing.ColorTranslator.FromHtml(colorValue); ;
+                            e.CellStyle.BackColor = ColorTranslator.FromHtml(colorValue); ;
                         }
                     }
                 }
