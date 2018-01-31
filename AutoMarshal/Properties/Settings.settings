@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="BaseURI" Type="System.String" Scope="User">
-      <Value Profile="(Default)">http://распознаваниеномеров.рф:45555/</Value>
+      <Value Profile="(Default)" />
     </Setting>
     <Setting Name="VehiclesUriTemplate" Type="System.String" Scope="User">
       <Value Profile="(Default)">api/v1/vehicles?offset={0}&amp;count={1}</Value>

@@ -25,7 +25,7 @@ namespace AutoMarshal.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://распознаваниеномеров.рф:45555/")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string BaseURI {
             get {
                 return ((string)(this["BaseURI"]));
