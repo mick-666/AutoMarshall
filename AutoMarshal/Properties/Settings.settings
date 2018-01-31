@@ -1,7 +1,21 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="AutoMarshal.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="BaseURI" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://распознаваниеномеров.рф:45555/</Value>
+    </Setting>
+    <Setting Name="VehiclesUriTemplate" Type="System.String" Scope="User">
+      <Value Profile="(Default)">api/v1/vehicles?offset={0}&amp;count={1}</Value>
+    </Setting>
+    <Setting Name="ImageUriTemplate" Type="System.String" Scope="User">
+      <Value Profile="(Default)">api/v1/vehicle/image?id={0}</Value>
+    </Setting>
+    <Setting Name="DaysBefore" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">3</Value>
+    </Setting>
+    <Setting Name="VehiclesLimit" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">30</Value>
+    </Setting>
+  </Settings>
 </SettingsFile>
