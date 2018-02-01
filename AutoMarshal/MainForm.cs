@@ -24,17 +24,33 @@ namespace AutoMarshal
         public MainForm()
         {
             InitializeComponent();
-            this.Text = "АвтоМаршал - журнал";
+            this.Text = Settings.Default.mainFotmTitle;
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            InitGridState();
             pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            //загружаем данные в формате Json
+            
             DateTime today = DateTime.Now;
             DateTime till = today.AddDays(-(Properties.Settings.Default.DaysBefore));
-            Task t = WebApiClass.GetVehicleListAsyncJson(till, VehiclesReadyJSON);
+
+            if (CheckBaseURI())
+            {
+                //загружаем данные в формате Json
+                InitGridState();
+                Task t = WebApiClass.GetVehicleListAsyncJson(till, VehiclesReadyJSON);
+            }
+        }
+
+        //Проверяем что в настройках восстановлен базовый адрес сервиса
+        private bool CheckBaseURI()
+        {
+            bool result = Properties.Settings.Default.BaseURI.ToLower().StartsWith("http://");
+            if (!result && (MessageBox.Show("В настройках не заполнен адрес web сервиса.\n Открыть окно настроек?", "Внимание", MessageBoxButtons.OKCancel, MessageBoxIcon.Asterisk) == DialogResult.OK))
+            {
+              result = (SettingsForm.ShowSettingsForm() == DialogResult.OK) && Properties.Settings.Default.BaseURI.ToLower().StartsWith("http://"); 
+            }
+            return result;
         }
 
         //Очистка грида в начальное состояние
@@ -158,7 +174,7 @@ namespace AutoMarshal
 
         private void выходToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            Close();
+            Application.Exit();
         }
 
         private void показыватьИзображенияToolStripMenuItem_Click(object sender, EventArgs e)
@@ -178,25 +194,29 @@ namespace AutoMarshal
         //Получение данных в формате Json
         private void обновитьДанныеJSONToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            //Очистка грида
-            InitGridState();
-            //Вычисляем граничную дату периода
-            DateTime today = DateTime.Now;
-            DateTime tillDate = today.AddDays(-(Properties.Settings.Default.DaysBefore));
-            //Грузим асинхронно данные (async/await)
-            Task tJson = WebApiClass.GetVehicleListAsyncJson(tillDate, VehiclesReadyJSON);
+            if (CheckBaseURI())
+            {
+                InitGridState();
+                //Вычисляем граничную дату периода
+                DateTime today = DateTime.Now;
+                DateTime tillDate = today.AddDays(-(Properties.Settings.Default.DaysBefore));
+                //Грузим асинхронно данные (async/await)
+                Task tJson = WebApiClass.GetVehicleListAsyncJson(tillDate, VehiclesReadyJSON);
+            }
         }
 
         //Получение данных в формате XML
         private void обновитьДанныеXMLToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            //Очистка грида
-            InitGridState();
-            //Вычисляем граничную дату периода
-            DateTime today = DateTime.Now;
-            DateTime tillDate = today.AddDays(-(Properties.Settings.Default.DaysBefore));
-            //Грузим асинхронно данные (async/await)
-            Task tXML = WebApiClass.GetVehicleListAsyncXML(tillDate, VehiclesReadyXML);
+            if (CheckBaseURI())
+            {
+                InitGridState();
+                //Вычисляем граничную дату периода
+                DateTime today = DateTime.Now;
+                DateTime tillDate = today.AddDays(-(Properties.Settings.Default.DaysBefore));
+                //Грузим асинхронно данные (async/await)
+                Task tXML = WebApiClass.GetVehicleListAsyncXML(tillDate, VehiclesReadyXML);
+            }
         }
         #endregion
     }

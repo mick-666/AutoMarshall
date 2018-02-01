@@ -16,7 +16,7 @@ namespace AutoMarshal
         public SettingsForm()
         {
             InitializeComponent();
-            this.Text = "Настройки приложения";
+            this.Text = Settings.Default.settingFormTitle;
             this.ReadSettings();
         }
 

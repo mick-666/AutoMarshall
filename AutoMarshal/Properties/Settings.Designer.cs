@@ -82,5 +82,23 @@ namespace AutoMarshal.Properties {
                 this["VehiclesLimit"] = value;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("АвтоМаршал - журнал")]
+        public string mainFotmTitle {
+            get {
+                return ((string)(this["mainFotmTitle"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Настройки приложения")]
+        public string settingFormTitle {
+            get {
+                return ((string)(this["settingFormTitle"]));
+            }
+        }
     }
 }
