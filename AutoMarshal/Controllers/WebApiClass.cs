@@ -72,7 +72,7 @@ namespace AutoMarshal.Controllers
             HttpResponseMessage response = await client.SendAsync(request);
             if (response.IsSuccessStatusCode)
             {
-                //Десериализуем строку Json-ответа в наш объект
+                //Десериализуем строку Json-ответа в наш объект.
                 root = await response.Content.ReadAsAsync<RootObject>();
             }
             //Возвращаем готовый объект со списком Entry
